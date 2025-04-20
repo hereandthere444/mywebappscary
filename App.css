@@ -1,0 +1,347 @@
+.app {
+  text-align: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  touch-action: manipulation; /* Improve touch response */
+}
+
+.app.dark-mode {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.app.dark-mode .game-area {
+  background-color: #2a2a2a;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.app.dark-mode .level-selector button {
+  background-color: #333;
+  color: #fff;
+}
+
+.app.dark-mode .level-selector button.active {
+  background-color: #8b0000;
+}
+
+.app.dark-mode button {
+  background-color: #8b0000;
+}
+
+.app.dark-mode button:hover {
+  background-color: #a00000;
+}
+
+h1 {
+  color: #ffffff;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-shadow: none;
+  transition: color 0.5s ease;
+}
+
+.app.dark-mode h1 {
+  color: #fff;
+}
+
+.level-selector {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.level-selector button {
+  margin: 0;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2d2d2d;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.level-selector button.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.app .game-area {
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timer {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 30px 0;
+  color: #ffffff;
+  font-family: 'Roboto Mono', monospace;
+}
+
+button {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.pro-start {
+  background-color: #2563eb;
+  font-size: 1.2rem;
+  padding: 16px 32px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.waiting {
+  color: #9ca3af;
+  font-size: 1.1rem;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.success {
+  color: #10b981;
+  font-weight: 600;
+}
+
+.fail {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.ghost-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: flash 0.1s ease-in-out;
+}
+
+.ghost-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 0%, rgba(0, 0, 0, 0.95) 100%);
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+.ghost-image img {
+  max-width: 90%;
+  max-height: 90%;
+  filter: brightness(1.1) contrast(1.1);
+  animation: 
+    float 2s infinite ease-in-out,
+    pulse 1s infinite alternate,
+    shake 0.5s infinite;
+  transform-origin: center;
+}
+
+@keyframes flash {
+  0% {
+    background-color: rgba(255, 255, 255, 1);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    filter: 
+      drop-shadow(0 0 20px rgba(255, 0, 0, 0.5))
+      brightness(1.2)
+      contrast(1.2);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: 
+      drop-shadow(0 0 30px rgba(255, 0, 0, 0.8))
+      brightness(1.4)
+      contrast(1.4);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    min-height: -webkit-fill-available; /* Fix for mobile viewport height */
+  }
+
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  .level-selector {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .level-selector button {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .timer {
+    font-size: 2.5rem;
+    margin: 20px 0;
+    padding: 0 10px;
+  }
+
+  button {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+    margin: 10px 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .pro-start {
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+
+  .waiting {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .result {
+    font-size: 1rem;
+    padding: 12px;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+  }
+
+  .game-area {
+    padding: 20px 15px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .ghost-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+
+  .ghost-image img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+  }
+}
+
+/* Prevent double-tap zoom on mobile */
+@media (max-width: 768px) {
+  button {
+    touch-action: manipulation;
+  }
+}
+
+/* Prevent text selection during gameplay */
+.game-area {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Improve button feedback on mobile */
+@media (max-width: 768px) {
+  button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s;
+  }
+} 
